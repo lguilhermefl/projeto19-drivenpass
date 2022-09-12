@@ -11,13 +11,13 @@ datasource db {
 }
 
 model Users {
-  id          Int           @id @default(autoincrement())
-  email       String        @unique
-  password    String
-  credentials Credentials[]
-  safeNotes   SafeNotes[]
-  cards       Cards[]
-  wifi        Wifi[]
+  id           Int            @id @default(autoincrement())
+  email        String         @unique
+  password     String
+  credentials  Credentials[]
+  safeNotes    SafeNotes[]
+  cards        Cards[]
+  wifiNetworks WifiNetworks[]
 
   @@map("users")
 }
@@ -69,7 +69,7 @@ model Cards {
   @@map("cards")
 }
 
-model Wifi {
+model WifiNetworks {
   id          Int    @id @default(autoincrement())
   title       String
   networkName String
@@ -78,5 +78,5 @@ model Wifi {
   userId      Int
 
   @@unique([title, userId])
-  @@map("wifi")
+  @@map("wifiNetworks")
 }
