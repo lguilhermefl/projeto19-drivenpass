@@ -22,7 +22,7 @@ export async function signIn(user: UserInsertData) {
   const { email, password }: UserInsertData = user;
   const userData: any = await getUserByEmail(email);
 
-  checkSignInEmail(userData);
+  checkUser(userData);
   checkSignInPassword(password, userData.password);
 
   const token: string = generateJwtToken(email);
@@ -44,14 +44,13 @@ function generateEncryptedPassword(password: string): string {
   return bcrypt.hashSync(password, SALT);
 }
 
-async function checkSignInEmail(email: string) {
-  const user: any = await getUserByEmail(email);
+function checkUser(user: any) {
   if (!user) throw { type: "Not Found", message: "User not found" };
 }
 
 function checkSignInPassword(password: string, passwordHash: string) {
   if (!bcrypt.compareSync(password, passwordHash))
-    throw { code: "Unauthorized", message: "Incorrect password" };
+    throw { type: "Unauthorized", message: "Incorrect password" };
 }
 
 function generateJwtToken(email: string): string {

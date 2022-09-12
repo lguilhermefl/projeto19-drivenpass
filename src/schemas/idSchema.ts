@@ -5,6 +5,6 @@ export const idSchema = joi
   .pattern(/^[1-9][0-9]*$/, { name: "id" })
   .required()
   .messages({
-    "any.required": "Card id is required",
-    "string.pattern.name": "Card id is not valid",
+    "any.required": "Id is required",
+    "string.pattern.name": "Id is not valid",
   });

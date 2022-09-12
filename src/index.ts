@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express, { json } from "express";
 import "express-async-errors";
 
-import { errorHandlerMiddleware } from "./middlewares/errorMiddleware";
+import errorHandlerMiddleware from "./middlewares/errorMiddleware";
 import router from "./routes/router";
 
 dotenv.config();

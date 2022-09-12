@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-export function errorHandlerMiddleware(
+export default function errorHandlerMiddleware(
   err: Error | any,
   req: Request,
   res: Response,
@@ -9,7 +9,6 @@ export function errorHandlerMiddleware(
   if (err.type) {
     return res.status(errorTypeToStatusCode(err.type)).send(err.message);
   }
-
   return res.sendStatus(500);
 }
 
