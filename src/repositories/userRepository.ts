@@ -1,9 +1,10 @@
 import { prisma } from "../config/database";
+import { UserInsertData } from "../types/userTypes";
 
-export async function insert(user: any) {
-  await prisma.users.create({ data: user });
+export async function insert(userData: UserInsertData) {
+  await prisma.users.create({ data: userData });
 }
 
 export async function findByEmail(email: string) {
-  await prisma.users.findUnique({ where: { email } });
+  return await prisma.users.findUnique({ where: { email } });
 }
