@@ -3,8 +3,8 @@ import { UserInsertData } from "../types/userTypes";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export async function signUp(user: UserInsertData) {
-  const { email, password }: UserInsertData = user;
+export async function signUp(newUser: UserInsertData) {
+  const { email, password }: UserInsertData = newUser;
 
   await checkSignUpEmail(email);
 
@@ -46,8 +46,7 @@ function generateEncryptedPassword(password: string): string {
 
 async function checkSignInEmail(email: string) {
   const user: any = await getUserByEmail(email);
-  if (!user)
-    throw { type: "Conflict", message: "This email is already in use" };
+  if (!user) throw { type: "Not Found", message: "User not found" };
 }
 
 function checkSignInPassword(password: string, passwordHash: string) {
